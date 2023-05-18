@@ -1,1 +1,4 @@
 maps_data/
+try_dash/
+migrations/
+temp/__pycache__/

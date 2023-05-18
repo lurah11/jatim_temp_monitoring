@@ -1,0 +1,18 @@
+## Scripts and Commands in django shell to populate database ##
+
+## 1. Populate City data 
+
+import pandas as pd 
+from temp.models import City 
+
+df = pd.read_csv('./maps_data/cities.csv')
+df = df.astype({'code':str})
+
+for data in df.itertuples():
+    City.objects.create(
+        name=data[3],
+        latitude=data[4],
+        longitude=data[5],
+        code=data[1]
+    )
+
