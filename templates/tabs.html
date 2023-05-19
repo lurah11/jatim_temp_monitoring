@@ -1,0 +1,14 @@
+<ul class="nav nav-tabs justify-content-center" id="myTab" role="tablist">
+    <li class="nav-item" role="presentation">
+      <a href="{% url 'temp:home-view' %}"><button class="nav-link {% if introduction %}active{% endif %}" id="introduction-tab" data-bs-toggle="tab" data-bs-target="#introduction-tab-pane" type="button" role="tab" aria-controls="introduction-tab-pane" aria-selected="true">Introduction</button></a>
+    </li>
+    <li class="nav-item" role="presentation">
+      <a href="{% url 'temp:tech-view' %}"><button class="nav-link {% if tech %}active{% endif %}" id="technical-detail-tab" data-bs-toggle="tab" data-bs-target="#technical-detail-tab-pane" type="button" role="tab" aria-controls="technical-detail-tab-pane" aria-selected="false">Technical Detail</button></a>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane" type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false">Contact</button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="disabled-tab" data-bs-toggle="tab" data-bs-target="#disabled-tab-pane" type="button" role="tab" aria-controls="disabled-tab-pane" aria-selected="false" disabled>Disabled</button>
+    </li>
+  </ul>
