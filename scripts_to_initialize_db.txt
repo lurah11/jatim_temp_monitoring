@@ -70,7 +70,6 @@ def read_xml(d):
         return (new_data,date_obj)
 
 def load_data(d):  #date -> 1 , name -> 3, tmax->6 , tmin->7, humax->8, humin->9
-    print(data[3],data[6])
     df,date_obj = read_xml(d)
     for data in df.itertuples(): 
         city = City.objects.get(name=data[3])
@@ -78,3 +77,28 @@ def load_data(d):  #date -> 1 , name -> 3, tmax->6 , tmin->7, humax->8, humin->9
     print("data has been loaded into DB")
 
 
+
+## 3. Script to Create East Java GEOJSON from Indonesia GEOJSON - to reduce space 
+
+import json 
+
+
+with open('./maps_data/indonesia-cities.json') as cities : 
+    city_json = json.load(cities)
+
+
+# this is geojson standard format 
+jatim = {
+    "type":"FeatureCollection",
+    "features":[]
+}
+
+for city in city_json["features"]: 
+    if city["code"]==35: 
+        jatim["features"].append(city)
+
+jatim_json_object = json.dumps(jatim, indent=3)
+
+
+with open('./maps_data/jatim.json','w') as jatim_cities : 
+    jatim_cities.write(jatim_json_object)
