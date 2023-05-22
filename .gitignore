@@ -9,3 +9,7 @@ airflow/airflow.cfg
 airflow/airflow.db
 airflow/webserver_config.py
 mapbox_plotly_token.txt
+drafting.ipynb
+drafting2.ipynb
+functions.ipnb
+
