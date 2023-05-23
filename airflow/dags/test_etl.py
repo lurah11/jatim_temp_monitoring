@@ -5,35 +5,33 @@ from airflow.decorators import task
 
 
 
-with DAG(start_date=datetime(2023,5,22), dag_id="test_etl_bmkg", schedule_interval='0 14 * * *') as dag:
+with DAG(start_date=datetime(2023,5,21), dag_id="test_etl_bmkg", schedule_interval='0 14 * * *') as dag:
 
-    @task.external_python(task_id="download_bmkg_xml",python='/home/lurah11/sinau/Tetris/capstone/temp_env/bin/python',retry_delay=timedelta(minutes=30),retries=50)
+    @task.external_python(task_id="download_bmkg_xml",python='/home/lurah121888/temp_env/bin/python',retry_delay=timedelta(minutes=30),retries=50)
     def download():
         from datetime import datetime, timedelta
         import requests 
-
+        from requests.exceptions import HTTPError
 
         def get_filename() : 
             today = datetime.now().date()
             filename = today.strftime("bmkg-%Y%m%d.xml")
             return filename
-        dataset_dir = '/home/lurah11/sinau/Tetris/capstone/jatim_temp_monitoring/supp_datasets'
-
-        
-        try : 
-            print("agus1")
-            filename = get_filename()
-            bmkg = requests.get('https://data.bmkg.go.id/DataMKG/MEWS/DigitalForecast/DigitalForecast-JawaTimur.xml')
-            # bmkg = requests.get('https://thisisfictiouswebsite.com')
-            bmkg.raise_for_status()
+        dataset_dir = '/home/lurah121888/jatim_temp_monitoring/supp_datasets'
+     
+        print("agus1")
+        filename = get_filename()
+        bmkg = requests.get('https://data.bmkg.go.id/DataMKG/MEWS/DigitalForecast/DigitalForecast-JawaTimur.xml')
+        if bmkg.status_code == 200 :
             with open(f"{dataset_dir}/{filename}",'wb') as f:
                 f.write(bmkg.content)
                 print(f"successfully write--{filename}")
-        except requests.exceptions.HTTPError as errh:
-            print("Error fetching data")
+        else:
+            raise HTTPError()
+                
             
     
-    @task.external_python(task_id="ETL_w_DJANGO",python='/home/lurah11/sinau/Tetris/capstone/temp_env/bin/python')
+    @task.external_python(task_id="ETL_w_DJANGO",python='/home/lurah121888/temp_env/bin/python')
     def etl_django():
         import os
         import sys
@@ -47,9 +45,9 @@ with DAG(start_date=datetime(2023,5,22), dag_id="test_etl_bmkg", schedule_interv
 
         d = get_filename()
         
-        base_dir = os.path.dirname('/home/lurah11/sinau/Tetris/capstone/jatim_temp_monitoring/temperature')
-        project = os.path.basename('/home/lurah11/sinau/Tetris/capstone/jatim_temp_monitoring/temperature')
-        dataset_dir = '/home/lurah11/sinau/Tetris/capstone/jatim_temp_monitoring/supp_datasets'
+        base_dir = os.path.dirname('/home/lurah121888/jatim_temp_monitoring/temperature')
+        project = os.path.basename('/home/lurah121888/jatim_temp_monitoring/temperature')
+        dataset_dir = '/home/lurah121888/jatim_temp_monitoring/supp_datasets'
         sys.path.append(base_dir)
         os.environ.setdefault("DJANGO_SETTINGS_MODULE", f"{project}.settings")
 

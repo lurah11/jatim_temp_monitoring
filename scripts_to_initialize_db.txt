@@ -102,3 +102,28 @@ jatim_json_object = json.dumps(jatim, indent=3)
 
 with open('./maps_data/jatim.json','w') as jatim_cities : 
     jatim_cities.write(jatim_json_object)
+
+### 4. Script to make simplified east-java json 
+
+import json 
+
+
+with open('./maps_data/simplified-indonesia-cities.json') as cities : 
+    city_json = json.load(cities)
+
+
+# this is geojson standard format 
+jatim = {
+    "type":"FeatureCollection",
+    "features":[]
+}
+
+for city in city_json["features"]: 
+    if city["code"]==35: 
+        jatim["features"].append(city)
+
+jatim_json_object = json.dumps(jatim, indent=3)
+
+
+with open('./maps_data/simple-jatim.json','w') as jatim_cities : 
+    jatim_cities.write(jatim_json_object)

@@ -7,5 +7,5 @@ app_name='temp'
 
 urlpatterns=[
     path('', views.home, name='home-view'),
-    path('tech_detail',views.tech, name='tech-view')
+    path('dashboard',views.dashboard, name='dashboard-view')
 ]

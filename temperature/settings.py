@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-uq5&v_dav@&k!f1+h#fh)znq3s199$9e=$9#fh!r3p%m1pb%&p
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'temp',
     'django_plotly_dash.apps.DjangoPlotlyDashConfig',
-    'channels'
+    'channels',
+    'dpd_static_support'
 ]
 
 MIDDLEWARE = [
@@ -122,10 +123,6 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-STATICFILES_DIRS = [
-    BASE_DIR / "temp/static"
-]
-
 STATIC_ROOT = 'static'
 
 
@@ -168,3 +165,10 @@ PLOTLY_COMPONENTS = [
 ]
 
 ASGI_APPLICATION='django_dash.routing.application'
+
+# CACHES = {
+#     "default": {
+#         "BACKEND": "django.core.cache.backends.memcached.PyMemcacheCache",
+#         "LOCATION": "127.0.0.1:11211",
+#     }
+# }
