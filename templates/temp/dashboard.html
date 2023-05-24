@@ -6,9 +6,16 @@
             <div class="col-1">
                 {% include 'dashboard_sidebar.html' %}
             </div>
+            {% if viz == 'dist' %}
             <div class="col-11">
                 {% include 'temp/dashboard_dataviz.html' %}
             </div>
+            {% endif %}
+            {% if viz == 'ttest' %}
+            <div class="col-11">
+                {% include 'temp/dashboard_ttest.html' %}
+            </div>
+            {% endif %}
         </div>
     </div>
 

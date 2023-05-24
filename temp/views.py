@@ -11,9 +11,10 @@ def home(request):
     return render(request,'temp/home.html',context)
 
 
-def dashboard(request): 
+def dashboard(request,viz): 
     context = {
         'dashboard':True,
+        'viz':viz
     }
     return render (request,'temp/dashboard.html',context)
 

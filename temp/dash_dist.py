@@ -11,8 +11,9 @@ import os
 from django.core.cache import cache
 from datetime import datetime
 from dash.dependencies import State
+from django.conf import settings
 
-app = DjangoDash('SimpleExample', external_stylesheets=[dbc.themes.BOOTSTRAP],add_bootstrap_links=True)   # replaces dash.Dash
+app = DjangoDash('Dist', external_stylesheets=[dbc.themes.BOOTSTRAP],add_bootstrap_links=True)   # replaces dash.Dash
 
 ######  BEGIN - PROCESSING THE DATA ####### 
 data_from_db = Temp.objects.all()
@@ -70,7 +71,7 @@ with open('./maps_data/simple-jatim.json') as simple_jatim_json:
 ####### BEGIN - CREATE VISUALIZATION #####
 
 #mapbox_token 
-mapbox_token="pk.eyJ1IjoibHVyYWgxMSIsImEiOiJjbGNlZW9rYmg0YXliM3JxbXpjZ2VtZ2dwIn0.KX3xp016xE5VDxpxdb2KSQ"
+mapbox_token=settings.MAPBOX_TOKEN
 
 
 

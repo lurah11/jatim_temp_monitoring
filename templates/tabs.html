@@ -6,7 +6,7 @@
       <button class="nav-link" id="technical-detail-tab" data-bs-toggle="tab" data-bs-target="#technical-detail-tab-pane" type="button" role="tab" aria-controls="technical-detail-tab-pane" aria-selected="false">Technical Detail</button>
     </li>
     <li class="nav-item" role="presentation">
-      <a href="{% url 'temp:dashboard-view' %}"><button class="nav-link {% if dashboard %}active{% endif %}" id="dashboard-tab" data-bs-toggle="tab" data-bs-target="#dashboard-tab-pane" type="button" role="tab" aria-controls="dashboard-tab-pane" aria-selected="false">Dashboard</button></a>
+      <a href="{% url 'temp:dashboard-view' 'dist' %}"><button class="nav-link {% if dashboard %}active{% endif %}" id="dashboard-tab" data-bs-toggle="tab" data-bs-target="#dashboard-tab-pane" type="button" role="tab" aria-controls="dashboard-tab-pane" aria-selected="false">Dashboard</button></a>
     </li>
     
     <li class="nav-item" role="presentation">
