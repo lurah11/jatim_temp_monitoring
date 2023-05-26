@@ -1,8 +1,9 @@
-<div class="d-flex align-items-start">
+<div class="d-flex align-items-start flex-wrap">
     <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-      <button class="nav-link active" id="v-pills-background-tab" data-bs-toggle="pill" data-bs-target="#v-pills-background" type="button" role="tab" aria-controls="v-pills-background" aria-selected="true">Background</button>
-      <button class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">Profile</button>
-      <button class="nav-link" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false">Messages</button>
-      <button class="nav-link" id="v-pills-settings-tab" data-bs-toggle="pill" data-bs-target="#v-pills-settings" type="button" role="tab" aria-controls="v-pills-settings" aria-selected="false">Settings</button>
+      <a href="{% url 'temp:home-view' 'welcome' %}"><button class="nav-link {% if home == 'welcome' %}active{% endif %}" id="v-pills-background-tab" data-bs-toggle="pill" data-bs-target="#v-pills-background" type="button" role="tab" aria-controls="v-pills-background" aria-selected="true">Welcome</button></a>
+      <a href="{% url 'temp:home-view' 'hypo' %}"><button class="nav-link {% if home == 'hypo' %}active{% endif %}" id="v-pills-hypothesis-tab" data-bs-toggle="pill" data-bs-target="#v-pills-hypothesis" type="button" role="tab" aria-controls="v-pills-hypothesis" aria-selected="false">Hypothesis</button></a>
+      <a href="{% url 'temp:home-view' 'plan' %}"><button class="nav-link {% if home == 'plan' %}active{% endif %}" id="v-pills-plan-tab" data-bs-toggle="pill" data-bs-target="#v-pills-plan" type="button" role="tab" aria-controls="v-pills-plan" aria-selected="false">Plan</button></a>
+      <a href="{% url 'temp:home-view' 'method' %}"><button class="nav-link {% if home == 'method' %}active{% endif %}" id="v-pills-plan-tab" data-bs-toggle="pill" data-bs-target="#v-pills-plan" type="button" role="tab" aria-controls="v-pills-plan" aria-selected="false">Methods</button></a>
+      <a href="{% url 'temp:home-view' 'arch' %}"><button class="nav-link {% if home == 'arch' %}active{% endif %}" id="v-pills-architecture-tab" data-bs-toggle="pill" data-bs-target="#v-pills-architecture" type="button" role="tab" aria-controls="v-pills-architecture" aria-selected="false">Architecture</button></a>
     </div>
 </div>

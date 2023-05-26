@@ -1,0 +1,34 @@
+{% load static %}
+
+<div class="flex-grow-1">
+    <h2 style="text-align: center;">PLANS AND CONSTRAINTS</h2>
+    <p style="color:blue"><b>1. INITIAL PLAN</b></p>
+    <p style="font-size: medium;">My initial plan was to use highly available API with ease to use 
+        data format &#40;json&#41; like https://openweathermap.org/api or https://www.weatherapi.com/api-explorer.aspx. But, as expected, since i am Indonesian 
+        i feel like the urge to use the data provided by BMKG (Badan Meteorologi dan Geofisika) instead of aforementioned API. 
+        Life is not that easy, i found several constraints which force me to use another method and tech stack to tackle the problems. 
+    </p>
+    <p style="color:blue"><b>2.CONSTRAINTS</b></p>
+    <ol type="a">
+        <li>BMKG data is available in xml format containing many informations, i need to extract them first. 
+            Here is the example of bmkg data in xml format <a href="{% static 'temp/bmkg.xml' %}" target="_blank"><button>BMKG XML Example</button></a>
+        </li>
+        <li>BMKG data is available only for 3 days range &#40;today,tomorrow,and the day after tomorrow&#41; . This data also replaced every day. 
+            Therefore, it is impossible for me to get a lot of data without saving the file every single day.      
+        </li>
+        <li>
+            BMKG website sometimes down for several hours. This happen more than once during May 2023. 
+        </li>
+        <li>
+            Due to the nature of the task, i need to use workflow orchestration tool, such as airflow, therefore i also need to ensure that my 
+            airflow to standby 24 hours. I've tried using aiflow with AWS EC2 free tier VM, but the VM is often lagging, therefore i use GCP with 300 dollars credit in order to use a better VM . 
+            The credits will expired in 31 July 2023, so does this website haha.. 
+        </li>
+        <li>
+            I also plan to use map as a plot, my preferred map style is available in <a href="https://www.mapbox.com/">mapbox</a>. But this 
+            website has rate limiting API, so the service might not available if the rate limits are exceeded.
+        </li>
+    </ol>
+    <p style="color:red">The methods which incorporate these constraints as requirements are available in "methods" section </p>
+    
+</div>

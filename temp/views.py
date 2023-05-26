@@ -1,12 +1,19 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.decorators.cache import cache_page
+from django.urls import reverse
 
 
 
 # Create your views here.
-def home(request):
+def welcome(request): 
+    return redirect(reverse('temp:home-view',kwargs={'home':'welcome'}))
+
+
+
+def home(request, home):
     context = {
-        'introduction':True
+        'introduction':True, 
+        'home':home
     }
     return render(request,'temp/home.html',context)
 

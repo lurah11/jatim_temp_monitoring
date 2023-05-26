@@ -1,6 +1,6 @@
 <ul class="nav nav-tabs justify-content-center" id="myTab" role="tablist">
     <li class="nav-item" role="presentation">
-      <a href="{% url 'temp:home-view' %}"><button class="nav-link {% if introduction %}active{% endif %}" id="introduction-tab" data-bs-toggle="tab" data-bs-target="#introduction-tab-pane" type="button" role="tab" aria-controls="introduction-tab-pane" aria-selected="true">Introduction</button></a>
+      <a href="{% url 'temp:home-view' 'welcome' %}"><button class="nav-link {% if introduction %}active{% endif %}" id="introduction-tab" data-bs-toggle="tab" data-bs-target="#introduction-tab-pane" type="button" role="tab" aria-controls="introduction-tab-pane" aria-selected="true">Introduction</button></a>
     </li>
     <li class="nav-item" role="presentation">
       <button class="nav-link" id="technical-detail-tab" data-bs-toggle="tab" data-bs-target="#technical-detail-tab-pane" type="button" role="tab" aria-controls="technical-detail-tab-pane" aria-selected="false">Technical Detail</button>

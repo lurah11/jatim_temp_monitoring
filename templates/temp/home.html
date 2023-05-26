@@ -1,9 +1,36 @@
 {% extends 'base.html' %}
 
+
+
 {% block content %}
-    <div class="d-flex">
-        {% include 'home_sidebar.html' %}
-        {% include 'temp/home_background.html' %}
+    <div class="container">
+        <div class="row">
+            <div class="col-2">
+                {% include 'home_sidebar.html' %}
+            </div>
+            <div class="col-10">
+                {% if home == "welcome" %}
+                    {% include 'temp/home_background.html' %}
+                {% endif %}
+                {% if home == "arch" %}
+                    {% include 'temp/home_arch.html' %}
+                {% endif %}
+                {% if home == "hypo" %}
+                    {% include 'temp/home_hypo.html' %}
+                {% endif %}
+                {% if home == "plan" %}
+                    {% include 'temp/home_plan.html' %}
+                {% endif %}
+                {% if home == "method" %}
+                    {% include 'temp/home_method.html' %}
+                {% endif %}
+            </div>
+        </div>
+
+        
+
+ 
+        
     </div>
     
 {% endblock content %}

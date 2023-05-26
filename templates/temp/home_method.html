@@ -1,0 +1,49 @@
+{% load static %}
+
+<div class="flex-grow-1">
+    <h2 style="text-align: center;">METHODS</h2>
+    <hr>
+    <p style="color:red">This section describes methods use in this project  in high level only. If 
+        you are interested to see the detailed implementation in code, please visit my github <a href="https://github.com/lurah11/jatim_temp_monitoring">here</a>. 
+        Basically, the methods are broken down into 3 major sections, Scheduled ETL &#40;Extract, Transform, Load&#41;, Data Visualization and Analysis, and App Deployment 
+    </p>
+    <p style="color:blue">
+        <b>1. Scheduled ETL </b>
+    </p>
+    <p>
+        <p><b>a. Data Extraction</b></p>
+        <p>Raw data is obtained from BMKG open source data here: <a href="https://data.bmkg.go.id/prakiraan-cuaca/">https://data.bmkg.go.id/prakiraan-cuaca/ </a>. 
+           Then i only choose the data for East Java &#40;Jawa Timur&#41;. The format of data is on XML format, therefore 
+           we need to extract the appropriate data from them first. I use BeautifulSoup library to extract the data. We can either use xpath or css selectors to locate the data, but 
+           i prefer using css selector instead of xpath. Extracted data is temporarily stored in a variable as python dict object. 
+        </p>
+        <p><b>b. Data Transformation </b></p>
+        <p>
+            Python dict object containing bmkg data then transformed into pandas dataframe.  By using the dataframe i can easily change the format of date field 
+            and other stuff. I also need to ensure that temeperature and humidity data properly converted into float not int &#40;since many measurement results are reported as whole
+            number&#41; Once the dataframe is complete, we need to store it  
+        </p>
+        <p><b>c. Load into Database </b></p>
+        <p>
+           The dataframe obtained from previous step is then iterated and loaded into database &#40;I use sqlite3, due to easy to set up and the workload of this web app is not that big&#41;. 
+           I use Django ORM &#40; Object Relational Mapper &#41; In order to interact with database. Because i found it easier to use than directly make SQL query. 
+           But, due to the nature of django application that need special environmental setup, i need to ensure that environment variables needed for Django Standalone application 
+           are met. 
+        </p>
+        <p><b>d. Scheduling the Workflow </b>
+            <p>
+                As i mentioned before that BMKG website sometimes down for several hours, i need a workflow orchestration tool to handle the automatic work from extract to load and 
+                also do automatic and scheduled retries whenever the workflow failed due to resource unavailability or other errors. I found Apache <a href="https://airflow.apache.org/">Airflow</a> is good solution here. 
+                But, since i also use Django ORM in previous step, i need to setup the Django Standalone 
+                environment inside the airflow DAGs &#40;Directed Acyclic Graph&#41;
+            </p>
+        </p>
+
+    </p>
+    <p style="color:blue">
+        <b>2. Data Visualization and Analysis</b>
+    </p>
+    <p>
+        
+    </p>
+</div>

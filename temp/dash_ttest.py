@@ -10,7 +10,7 @@ import os
 from django.core.cache import cache
 from datetime import datetime
 from dash.dependencies import State
-from scipy.stats import ttest_ind
+from scipy.stats import ttest_ind, normaltest
 from django.conf import settings
 
 
@@ -84,12 +84,18 @@ app2.layout = dbc.Row([
         dbc.Col([dcc.Graph(figure={}, id='graph_humin')],class_name="col-6")
     ]),
     html.Hr(),
-    dbc.Row([html.P(['Summary of t_test between 2 cities'],id="p_ttest",style=fig_ttl)]),
+    dbc.Row([
+        dbc.Col([html.P("Input Alpha Value here (between 0 to 1):", style={"text-align":"right"})]),
+        dbc.Col([dcc.Input(type="number", min=0, max = 1,value=0.05,id="alpha",style=fig_ttl)])
+    ]),
+    dbc.Row([html.P(['Normality test'],id="norm_ttest",style=fig_ttl)]),
     html.Hr(),
     dbc.Row([
-        dbc.Col([html.P("Input Alpha Value here:", style={"text-align":"right"})]),
-        dbc.Col([dcc.Input(type="number", value=0.05,id="alpha",style=fig_ttl)])
-        ]),
+        dbc.Col([],id="data_normal")
+    ]),
+    html.Hr(),
+    dbc.Row([html.P(['Summary of t_test between 2 cities'],id="p_ttest",style=fig_ttl)]),
+    html.Hr(),
     dbc.Row([
         dbc.Col([],id="data_table")
     ])
@@ -133,11 +139,20 @@ def update_graph(city1,city2):
 
 @app2.callback(
     Output(component_id='data_table', component_property='children'),
+    Output(component_id='data_normal', component_property='children'),
     Input(component_id='city1', component_property='value'),
     Input(component_id='city2',component_property='value'),
     Input(component_id='alpha',component_property='value'),
 )
 def update_ttest(city1,city2,alpha): 
+    df_normal =  {
+        "parameter_name":[],
+        f"p_val_{city1}":[],
+        f"p_val_{city2}":[],
+        f"norm_test_{city1}":[],
+        f"norm_test_{city2}":[],
+    }
+    
     df = {
         "parameter_name":[],
         f"avg_{city1}":[],
@@ -146,11 +161,29 @@ def update_ttest(city1,city2,alpha):
         "p_val":[],
         "result":[]
     }
+
     city1_data = res[res["name"]==city1] 
     city2_data = res[res["name"]==city2]
     param_name = ["tmax","tmin","humax","humin"]
     for param in param_name : 
         t_test_res = ttest_ind(city1_data[param],city2_data[param])
+        s1,p1= normaltest(city1_data[param])
+        s2,p2 = normaltest(city2_data[param])
+        # construct dict untuk normality test 
+        df_normal["parameter_name"].append(param)
+        df_normal[f"p_val_{city1}"].append(p1)
+        if p1 < alpha : 
+            df_normal[f"norm_test_{city1}"].append("non normal")
+        else : 
+            df_normal[f"norm_test_{city1}"].append("approx. normal")
+        
+        df_normal[f"p_val_{city2}"].append(p2)
+        if p2 < alpha : 
+            df_normal[f"norm_test_{city2}"].append("non normal")
+        else : 
+            df_normal[f"norm_test_{city2}"].append("approx. normal")
+                
+        #construct dict untuk ttest
         df["parameter_name"].append(param)
         df[f"avg_{city1}"].append(city1_data[param].mean())
         df[f"avg_{city2}"].append(city2_data[param].mean())
@@ -160,8 +193,11 @@ def update_ttest(city1,city2,alpha):
             df["result"].append("significantly different")
         else : 
             df["result"].append("not significantly different")
-    # columns = [{'id': c, 'name': c} for c in df.keys()]
-    dataframe = pd.DataFrame(df)
+    
+    print(df)
+    print(df_normal)
+    dataframe1 = pd.DataFrame(df)
+    dataframe2 = pd.DataFrame(df_normal)
     conditional_style =[
         {
             'if': {
@@ -171,5 +207,5 @@ def update_ttest(city1,city2,alpha):
             'color': 'red'
         }
     ]
-    return dash_table.DataTable(dataframe.to_dict('records'), style_data_conditional=conditional_style)
+    return dash_table.DataTable(dataframe1.to_dict('records'), style_data_conditional=conditional_style), dash_table.DataTable(dataframe2.to_dict("records"))
 

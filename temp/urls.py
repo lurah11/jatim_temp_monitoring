@@ -7,6 +7,7 @@ from temp.dash_ttest import app2
 app_name='temp'
 
 urlpatterns=[
-    path('', views.home, name='home-view'),
+    path('', views.welcome, name='welcome-view'),
+    path('<str:home>', views.home, name='home-view'),
     path('dashboard/<str:viz>',views.dashboard, name='dashboard-view')
 ]
