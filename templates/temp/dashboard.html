@@ -16,6 +16,16 @@
                 {% include 'temp/dashboard_ttest.html' %}
             </div>
             {% endif %}
+            {% if viz == 'dataset' %}
+            <div class="col-11">
+                {% include 'temp/dashboard_dataset.html' %}
+            </div>
+            {% endif %}
+            {% if viz == 'conc' %}
+            <div class="col-11">
+                {% include 'temp/dashboard_conc.html' %}
+            </div>
+            {% endif %}
         </div>
     </div>
 

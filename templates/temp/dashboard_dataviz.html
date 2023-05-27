@@ -1,7 +1,20 @@
 {%load plotly_dash%}
 
 
-{% plotly_app name='Dist' ratio=1 %}
-
+{% plotly_app name='Dist' ratio=0.6 %}
+<div class="row">
+    <p style="font-size:medium;color:blue">
+        <b>Data Analysis</b>
+    </p>
+    <p style="font-size:medium">
+        This data analysis is made on data up to May 27, 2023. We can visually see that the average of either maximum or minimum temperature
+        of cities in east java are not uniform. Based on this visualization, we can see that cities located near the sea typically has 
+        higher average temperature compared to cities located in the middle of island. Cities in Madura Island which are surrounded by sea also support 
+        this observation. The altitude of cities above the sea level also plays important role to determine the temperature of the city. 
+        Cities located in high altitude most likely have lower temperature &#40;In order to support this claim, we definitely need the data about the 
+        altitude , but i am not going to cover them here, feel free to explore by yourself :D &#41;. As an example, Kota Batu, which is located in mountain, has the lowest
+        temperature in east java. 
+    </p>
+</div>
 
 

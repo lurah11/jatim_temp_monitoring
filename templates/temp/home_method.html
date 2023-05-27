@@ -44,6 +44,45 @@
         <b>2. Data Visualization and Analysis</b>
     </p>
     <p>
-        
+       <b>a. Visualize the distribution of temperature in east java</b>
+       <p>
+        In order to do this i definetly need to "project" the earth into this page. Fortunately, plotly provide this Choropleth Map objects which satisfy my
+        requirement. Basically, BMKG has provide the latitude and longitude data of each city and i can just use scatter mapbox to mark each city as a point 
+        in earth. But, we cannot visually see the area that way, we need the polygons do to that . Therefore, i also use Geojson data provided in this 
+        github repo <a href="https://github.com/okzapradhana/indonesia-city-geojson">okzapradhana/indonesia-city-geojson</a>. The Geojson is intended for the whole 
+        indonesia, hence the size is very big, therefore i slice it and takes only east java province. Once all sources are ready, we can start plotting using 
+        plotly , then incorporate the result into dash. 
+       </p> 
     </p>
+    <p>
+       <b>b. Comparing the means of temperature between 2 cities </b>
+       <p>
+         In this case, i use 4 boxplots to visualize all parameters in the same time. The 2 cities being compared are put in the boxplots side by side 
+         so we can visually inspect whether the temperature distribution is similar or not. But of course, we can't rely on our visualization alone, therefore 
+         i also provide t-test along with normality test to support the visualization. t-test and normality test are calculated using scipy library. Since this web app dynamically receive 
+         user inputs, the users can select appropriate options such as comparing cities other than Kota Mojokerto and Kab. Malang. 
+       </p> 
+    </p>
+</div>
+<p style="color:blue">
+    <b>3. Web App Deployments</b>
+</p>
+<p>
+   <b>a. Virtual machines or managed services ?</b>
+   <p>
+     Honestly, i wanted to try the managed service provided by AWS or GCP, but i am afraid that i have not proficient enough to handle 
+     the cost and efficiency of such services. Therefore i decide to use virtual machine and setup the web server by myself. I choose the 300 USD free credits provided 
+     by GCP since i can have more powerfull VMs. But, since i also want to try to use other service of GCP &#40;for other projects&#41; i decide to use the VM with only 2 GB of RAM 
+     &#40;this amount of RAM is higher than AWS EC2 free tier&#41;
+   </p> 
+</p>
+<p>
+   <b>b. Web Framework and  Servers </b>
+   <p>
+     I decided to use Django as web framework since i have a little bit experience with it. Meanwhile, for heavy lift the interactivity of the plots 
+     and data related stuff, i choose plotly dash. This package will handle all Javascripts required for interactivity under the hood. In order for this 
+     package to work properly with django, i use django_plotly_dash package as interface between them. For deployment, i choose Nginx as web server with gunicorn as WSGI since these 2 softwares are very popular in Django community. I do not use SSL/TLS for https because 
+     i have not learned about it yet. 
+   </p> 
+</p>
 </div>

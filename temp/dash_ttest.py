@@ -96,10 +96,6 @@ app2.layout = dbc.Row([
     html.Hr(),
     dbc.Row([html.P(['Summary of t_test between 2 cities'],id="p_ttest",style=fig_ttl)]),
     html.Hr(),
-    dbc.Row([
-        dbc.Col([],id="data_table")
-    ])
-     
 ])
 
 def create_boxplot(y0,y1,name1,name2): 

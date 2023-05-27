@@ -13,4 +13,6 @@ drafting.ipynb
 drafting2.ipynb
 functions.ipnb
 .env
-
+.ipynb_checkpoints/
+supp_datasets/
+db.sqlite3

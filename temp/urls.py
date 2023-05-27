@@ -2,6 +2,7 @@ from django.urls import path
 from . import views
 from temp.dash_dist import app
 from temp.dash_ttest import app2
+from temp.dash_datasets import app3
 
 
 app_name='temp'

@@ -2,3 +2,16 @@
 
 
 {% plotly_app name='ttest' ratio=1 %}
+<div class="row">
+    <p style="font-size:medium;color:blue">
+        <b>Data Analysis</b>
+    </p>
+    <p style="font-size:medium">
+        This data analysis is made on data up to May 27, 2023. The normality test result 
+        &#40;i use this function from scipy package <a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.normaltest.html">scipy.stats.normaltest</a> &#41;
+        shows that the maximum and minimum temperature data up to may 27, 2023 show approximately normal distribution. Meanwhile, boxplot is used to 
+        visually see the data distribution between Kota Malang and Kab. Mojokerto. Even though we can visually see the difference in distribution, we still need to do formal test such
+        as t test to test the equality of means. The p-value of the ttest shows a result which is smaller than alpha value of 0.05. This indicates that we can 
+        reject null hypothesis of "two cities have equal maximum and minimum temperature means". 
+    </p>
+</div>

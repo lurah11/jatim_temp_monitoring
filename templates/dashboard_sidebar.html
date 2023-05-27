@@ -1,8 +1,8 @@
 <div class="d-flex align-items-start">
-    <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+    <div class="nav flex-column nav-pills me-3 flex-wrap" id="v-pills-tab" role="tablist" aria-orientation="vertical">
       <a href="{% url 'temp:dashboard-view' 'dist' %}"><button class="nav-link {% if viz == 'dist' %}active{% endif %}" id="v-pills-method-tab" data-bs-toggle="pill" data-bs-target="#v-pills-method" type="button" role="tab" aria-controls="v-pills-method" aria-selected="true">Maps</button></a>
       <a href="{% url 'temp:dashboard-view' 'ttest' %}"><button class="nav-link {% if viz == 'ttest' %}active{% endif %}" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">T Test</button></a>
-      <button class="nav-link" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false">Messages</button>
-      <button class="nav-link" id="v-pills-settings-tab" data-bs-toggle="pill" data-bs-target="#v-pills-settings" type="button" role="tab" aria-controls="v-pills-settings" aria-selected="false">Settings</button>
+      <a href="{% url 'temp:dashboard-view' 'dataset' %}"><button style="padding-left:0px" class="nav-link text-left {% if viz == 'dataset' %}active{% endif %}" id="v-pills-datasets-tab" data-bs-toggle="pill" data-bs-target="#v-pills-datasets" type="button" role="tab" aria-controls="v-pills-datasets" aria-selected="false">Bonus Page : Datasets</button></a> 
+      <a href="{% url 'temp:dashboard-view' 'conc' %}"><button class="nav-link text-wrap {% if viz == 'conc' %}active{% endif %}" id="v-pills-conclusions-tab" data-bs-toggle="pill" data-bs-target="#v-pills-conclusions" type="button" role="tab" aria-controls="v-pills-conclusions" aria-selected="false">Conclusion      </button></a> 
     </div>
 </div>

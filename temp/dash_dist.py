@@ -99,7 +99,7 @@ app.layout = dbc.Row([
                 dbc.Row(dcc.Dropdown([{'label':'Average of Maximum Temperature', 'value':'tmax_avg'},{'label':'Average of Minimum Temperature', 'value':'tmin_avg'},{'label':'Average of Maximum Humidity', 'value':'humax_avg'},{'label':'Average of Minimum Humdity', 'value':'humin_avg'}],"tmax_avg",id="parameter"),style=s_d_down)]),
             dbc.Col([
                 dbc.Row(children="Map Polygon Detail:",style=fs_p),
-                dbc.Row(dcc.Dropdown([{'label':'HIGH (detailed city border, but slow rendering)', 'value':'high'},{'label':'LOW (Crappy city border, but fast rendering)','value':'low'}],"low",id="polygon"),style=s_d_down)]),
+                dbc.Row(dcc.Dropdown([{'label':'HIGH (detailed city border, but slow rendering)', 'value':'high'},{'label':'LOW (crappy city border, but fast rendering)','value':'low'}],"low",id="polygon"),style=s_d_down)]),
             dbc.Col([
                 dbc.Row(children="Map Style:",style=fs_p),
                 dbc.Row(dcc.Dropdown(["light","stamen-watercolor","satellite"],"light",id="mb_style"),style=s_d_down)])
@@ -117,11 +117,6 @@ app.layout = dbc.Row([
         )
     ]),
     html.Hr(),
-    html.Hr(),
-    dbc.Row([html.P(children=[f'Summary of BMKG data up to {date_str}'])], style=fig_ttl),
-    dbc.Row(children=[
-        dash_table.DataTable(res.to_dict('records'),page_size=10)
-    ])
 ])
 
 
