@@ -10,5 +10,6 @@ app_name='temp'
 urlpatterns=[
     path('', views.welcome, name='welcome-view'),
     path('<str:home>', views.home, name='home-view'),
-    path('dashboard/<str:viz>',views.dashboard, name='dashboard-view')
+    path('dashboard/<str:viz>',views.dashboard, name='dashboard-view'), 
+    path('others/',views.others, name='others-view')
 ]

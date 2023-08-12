@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-2">
+                {% include 'others_sidebar.html' %}
+            </div>
+            <div class="col-10">
+                <div>
+                    <h5> <b>1. Handwritten Digit Classification - link to demo video </b></h5>
+                <p> Using CNN built on top of Tensorflow, i create the handwritten digit classifier, to classify handwritten digits from 0 to 9. I think there are 
+                    tons of project like this out there. But, i modify the way the user interact with our model. Instead of uploading an image, user can directly draw 
+                    their handwritten inside canvas object. I make 2 classifiers, the first one is built from scratch, while the other one use transfer learning . But due to dataset
+                    and computational power limitation the classifiers stil has many flaws. 
+                </p>
+                <a href="https://www.loom.com/share/4af3a57d69ef453d82ce0bd82a80914e">link_to_demo_video</a> AND 
+                <a href="https://github.com/lurah11/django_training_lurah/tree/main/digit">github</a>
+                <p style="font-size: x-small; color:brown">I only deploy this model in localhost, since i need rather powerfull server to ensure fast model loading . Therefore i provide you with 
+                    the link to video guys
+                </p>
+                </div>
+                <div>
+                    <h5> <b>Google News Scraper </b></h5>
+                <p> Just a simple scraper to scrap news from news.google.com . I put certain condition such as : it only scrap hot news ( not more than 2 days ago), 
+                    and other criteria (explained in web app). The news are scraped using selenium and beautifulsoup. It can receive multiple queries as long as you separate
+                    them by semi colon. Since the web app is simple, i deployed it using AWS EC2 free tier.
+                </p>
+                <a href="http://18.141.190.148/">link_to_google_news_scraper</a> AND 
+                <a href="https://github.com/lurah11/gns_google_news_scraper">github</a>
+                </div>
+                
+            </div>
+        </div>
+
+        
+
+ 
+        
+    </div>
+    
+{% endblock content %}

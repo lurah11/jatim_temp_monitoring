@@ -1,6 +1,8 @@
 from airflow import DAG 
 from datetime import datetime, timedelta
 from airflow.decorators import task 
+from airflow.operators.bash import BashOperator
+
 
 
 
@@ -114,9 +116,15 @@ with DAG(start_date=datetime(2023,5,21), dag_id="test_etl_bmkg", schedule_interv
 
         return load_data(d)
     
+    restart_gunicorn = BashOperator(
+        task_id="restart_gunicorn",
+        bash_command="sudo systemctl restart gunicorn", 
+        run_as_user="lurah121888"
+    )
 
 
 
-    download() >> etl_django()
+    download() >> etl_django() >> restart_gunicorn
+  
 
 

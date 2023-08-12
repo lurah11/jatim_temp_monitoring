@@ -5,4 +5,7 @@
     <li class="nav-item" role="presentation">
       <a href="{% url 'temp:dashboard-view' 'dist' %}"><button class="nav-link {% if dashboard %}active{% endif %}" id="dashboard-tab" data-bs-toggle="tab" data-bs-target="#dashboard-tab-pane" type="button" role="tab" aria-controls="dashboard-tab-pane" aria-selected="false">Dashboard</button></a>
     </li>
+    <li class="nav-item" role="presentation">
+      <a href="{% url 'temp:others-view' %}"><button class="nav-link {% if others %}active{% endif %}" id="others-tab" data-bs-toggle="tab" data-bs-target="#others-tab-pane" type="button" role="tab" aria-controls="others-tab-pane" aria-selected="false">Other Projects</button></a>
+    </li>
   </ul>

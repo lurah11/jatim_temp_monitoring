@@ -44,6 +44,7 @@ for d in data_from_db:
 
 
 df = pd.DataFrame(data)
+print(df.tail())
 
 df = df.astype({'date':'datetime64[ns]'})
 df["date"] = df["date"].dt.date

@@ -25,3 +25,9 @@ def dashboard(request,viz):
     }
     return render (request,'temp/dashboard.html',context)
 
+def others(request): 
+    context = {
+        'others':True
+    }
+    return render(request,'temp/others.html', context)
+
